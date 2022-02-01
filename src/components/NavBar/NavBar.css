@@ -1,0 +1,87 @@
+
+.navbar {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(25px, 1fr));
+    grid-template-rows: 100px 1fr;
+    grid-template-areas: 
+    "un do tr cu ci se si oc";
+    grid-auto-flow: row;
+    background-color: black;
+    color:lawngreen;
+    align-items: center;
+    border-style:groove;
+    border-color: rgba(226, 211, 211, 0.575);
+  }
+  
+  .guitar {
+    grid-area: ci;
+   }
+   
+   .bass {
+     grid-area: se;
+    }
+   
+   .us {
+     grid-area: si;
+    }
+   
+   .contact {
+     grid-area: oc;
+    }
+    
+  
+  @media screen and (max-width: 715px) {
+    .navbar {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(4, minmax(50px, 1fr));
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas: 
+      "arr1 arr arr arr2"
+      "uno   dos   tres   cuatro";
+    } 
+  
+    .logo {
+      grid-area: arr;
+    }
+  
+    .guitar {
+      grid-area: uno;
+    }
+  
+    .bass {
+      grid-area: dos;
+    }
+  
+    .us {
+      grid-area: tres;
+    }
+  
+    .contact {
+      grid-area: cuatro;
+    }
+  
+    .logo img {
+      grid-column: span 2;
+    }
+  }
+  
+  .logo img {
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  .item {
+    font-weight: bold;
+  }
+  
+  .item:hover {
+    font-size: larger;
+    color:darkturquoise;
+  }
+  
+  a {
+    text-decoration: none;
+    color:lawngreen;
+    width: 100%;
+  }
+  
