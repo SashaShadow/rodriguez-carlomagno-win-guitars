@@ -1,12 +1,15 @@
 import './App.css';
 import NavBar from "./components/NavBar/NavBar.js";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer.js";
+import CartWidget from './components/CartWidget/CartWidget';
 
 function App() {
   return (
     <div className='App'>
     <NavBar/>
-    <h2>Primer prueba de la página</h2>
+    <ItemListContainer greeting="¡Bienvenido a WinGuitars!"/>
     </div>
+    
   );
 }
 
