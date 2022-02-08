@@ -1,0 +1,47 @@
+/*
+.contenedor {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1%;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "i c d"
+    "ia c da";
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}*/
+
+.compImg {
+    width: 75%;
+    border-radius: 10px;
+}
+
+input {
+    text-align: center;
+}
+
+.product {
+    background-color: rgba(152, 250, 173, 0.2);
+    border-radius: 2px;
+}
+
+.nombre {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-area: c;
+}
+
+.agregar {
+    width: 40%;
+    margin-bottom: 15px;
+}
+
+
+button {
+    background: none;
+    color: rgb(155, 218, 243);
+    border-radius: 5px;
+}
+
+
