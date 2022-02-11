@@ -1,0 +1,31 @@
+.ItemList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1.5%;
+    grid-auto-flow: row;
+    width: 100%;
+    justify-items: stretch;
+    align-items: center;
+}
+
+
+@media screen and (max-width: 1015px) {
+    .ItemList {
+        grid-template-columns: repeat(3, 1fr);
+    }
+ }
+
+
+@media screen and (max-width: 666px) {
+    .ItemList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+ }
+
+@media screen and (max-width: 400px) {
+    .ItemList {
+        grid-template-columns: 1fr;
+    }
+ }
+
+
