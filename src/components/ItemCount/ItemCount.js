@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./ItemCount.css";
-import bass from "./washburnt24.jpg";
 
 const ItemCount = ({stock, initial, onAdd}) => {
 

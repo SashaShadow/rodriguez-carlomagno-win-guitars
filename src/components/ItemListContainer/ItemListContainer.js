@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from "react";
-import ItemCount from "../ItemCount/ItemCount.js";
+import { useParams } from "react-router-dom";
 import "./ItemListContainer.css";
 import ItemList from "../ItemList/ItemList.js";
-import { miProducto } from '../../asyncmock.js';
+import { getByCategory } from "../../asyncmock.js";
 
 const ItemListContainer = ({greeting}) => {
 
         const [producto, setProducto] = useState([]);
+        const [loader, setLoader] = useState(true);
+        const { category } = useParams();
     
         useEffect(() => {
             console.log("App montada");
-            miProducto().then(producto => setProducto(producto));
-        }, []);
+            getByCategory(category)
+            .then(producto => {
+                setProducto(producto)
+                setLoader(false)})
+            .catch(err => console.log(err));
+        }, [category]);
 
     return (
         <>
         <h1>{greeting}</h1>
         <div className="container">
-        <ItemList producto={producto}/>
-        <ItemCount stock={10} initial={1} onAdd={(num) => 
-        num > 1 ? alert(`Agregaste ${num} items al carrito`) 
-        : alert(`Agregaste ${num} item al carrito`)}/>
+        {loader ? <h1>Cargando productos...</h1> : <ItemList producto={producto}/>}
         </div>
         </>
     )

@@ -1,5 +1,6 @@
 import React from "react";
 import CartWidget from "../CartWidget/CartWidget.js";
+import { Link, NavLink } from "react-router-dom";
 import "./NavBar.css";
 import logo from "../../../src/logo.png";
 
@@ -7,12 +8,12 @@ const NavBar = () => {
     return (
         <div className="navbar">
             <div className="logo">
-                <a href="#"><img src={logo}/></a>
+            <Link to={"/"}><img src={logo}/></Link>
             </div>
-            <a href="#" className="item guitar"><p>Guitarras</p></a>
-            <a href="#" className="item bass"><p>Bajos</p></a>
-            <a href="#" className="item us"><p>Nosotros</p></a>
-            <a href="#" className="item contact"><p>Contacto</p></a>
+            <NavLink to={`/category/guitar`} className={({isActive}) => isActive ? "active guitar" : "guitar" }><p>Guitarras</p></NavLink>
+            <NavLink to={`/category/bass`} className={({isActive}) => isActive ? "active bass" : "bass" }><p>Bajos</p></NavLink>
+            <NavLink to={`/us`} className={({isActive}) => isActive ? "active us" : "us" }><p>Nosotros</p></NavLink>
+            <NavLink to={"/contact"} className={({isActive}) => isActive ? "active contact" : "contact" }><p >Contacto</p></NavLink>
             <CartWidget/>
         </div>
 

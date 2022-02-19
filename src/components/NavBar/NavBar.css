@@ -15,18 +15,22 @@
   
   .guitar {
     grid-area: ci;
+    font-weight: bold;
    }
    
    .bass {
      grid-area: se;
+     font-weight: bold;
     }
    
    .us {
      grid-area: si;
+     font-weight: bold;
     }
    
    .contact {
      grid-area: oc;
+     font-weight: bold;
     }
     
   
@@ -70,13 +74,15 @@
     border-radius: 5px;
   }
   
-  .item {
-    font-weight: bold;
-  }
-  
-  .item:hover {
+  .guitar:hover, .bass:hover, .us:hover, .contact:hover {
     font-size: larger;
     color:darkturquoise;
+  }
+
+  .active {
+      
+      font-size: larger;
+      color:darkturquoise;
   }
   
   a {
