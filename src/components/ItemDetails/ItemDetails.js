@@ -2,7 +2,7 @@ import React from "react";
 import ItemCount from "../ItemCount/ItemCount.js";
 import "./ItemDetails.css";
 
-const ItemList = ({ item }) => {
+const ItemDetails = ({ item }) => {
 
     return (
         <div className="it">
@@ -20,4 +20,4 @@ const ItemList = ({ item }) => {
     )   
 };
 
-export default ItemList;
+export default ItemDetails;

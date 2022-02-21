@@ -16,7 +16,7 @@ const ItemDetailContainer = ({ greeting }) => {
         .catch(err  => {
             console.log(err)
         });
-        console.log(it);
+        
         return (() => {
             setItems()
         })
