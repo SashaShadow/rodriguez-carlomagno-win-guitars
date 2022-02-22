@@ -1,8 +1,21 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 import ItemCount from "../ItemCount/ItemCount.js";
 import "./ItemDetails.css";
 
 const ItemDetails = ({ item }) => {
+
+    const [quantity, setQuantity] = useState(0);
+
+    const onAdd = (num) => {
+        num > 1 ? alert(`Agregaste ${num} items con la id ${item?.id} al carrito`) 
+        : alert(`Agregaste ${num} item con la id ${item?.id} al carrito`)
+        setQuantity(num)
+    }
+
+    useEffect(() => {
+        quantity > 0 && console.log(quantity);
+    }, [quantity])
 
     return (
         <div className="it">
@@ -13,9 +26,7 @@ const ItemDetails = ({ item }) => {
             <p>{item?.details}</p>
             </div>
             <p>Precio: {item?.price} Stock: {item?.stock}</p>
-            <ItemCount stock={item?.stock} initial={1} onAdd={(num) => 
-        num > 1 ? alert(`Agregaste ${num} items al carrito`) 
-        : alert(`Agregaste ${num} item al carrito`)}/>
+            {quantity > 0 ? <Link to={"/cart"}>Ir al carrito</Link> : <ItemCount stock={item?.stock} initial={1} onAdd={onAdd}/>}
         </div>
     )   
 };
