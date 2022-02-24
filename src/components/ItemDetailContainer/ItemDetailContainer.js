@@ -27,7 +27,7 @@ return (
     <>
     <h1>{greeting}</h1>
     <div className="items">
-        <ItemDetails item={it}/>
+        <ItemDetails {...it}/>
     </div>
     </>
 )

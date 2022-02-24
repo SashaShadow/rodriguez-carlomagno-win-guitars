@@ -77,7 +77,7 @@ export const getItem = (id) => {
 export const getByCategory = (category) => {
     return new Promise((resolve, reject) => {
         const cate = items.filter(p => category ? p.category === category : items)
-            if (cate.length > 0) {
+            if (cate.length) {
             setTimeout(() => {
                 resolve(cate)
             }, 250)

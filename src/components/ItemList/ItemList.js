@@ -7,7 +7,8 @@ const ItemList = ({ producto }) => {
     return (
         <div className="ItemList">
         {producto.map(item => ( 
-            <Item title={item.title} key={item.id} id={item.id} image={item.image} price={item.price} stock={item.stock}/>))}
+            <Item  key={item.id} {...item}/>))}
+            {/* es mas facil poner el spread que id={item.id} image={item.image} price={item.price} stock={item.stock} title={item.title} */}
         </div>
     )   
 };
