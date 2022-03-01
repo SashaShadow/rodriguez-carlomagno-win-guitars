@@ -6,17 +6,20 @@ const Context = React.createContext();
 export const CartContext = ({children}) => {
 
     const [cart, setCart] = useState([]);
+    const [quant, setQuant] = useState(0)
+    const [price, setPrice] = useState(0);
 
     useEffect(() => {
         console.log(cart);
-
-    }, [cart])
+        console.log(price);
+    }, [cart, quant, price])
 
     const isInCart = (id) => {
         return cart.some(p => p.id === id)
     }
 
     const addItem = (productToAdd, quantity) => {
+
 
         const objetoNuevo = {
             ...productToAdd,
@@ -36,25 +39,35 @@ export const CartContext = ({children}) => {
                     }
                     return prod;})
                 setCart(newCart);
+                setQuant(quant + quantity);
+                setPrice(price + productToAdd.price * quantity);
             } else {
-                alert(`Superaste la cantidad de productos que podias añadir papurri. Stock restante: ${leftStock}`)
+                alert(`Superaste la cantidad de productos que podias añadir. Stock restante: ${leftStock}`)
             }
         } else {
-            setCart([...cart, objetoNuevo])
+            setCart([...cart, objetoNuevo]);
+            setQuant(quant + quantity);
+            setPrice(price + productToAdd.price * quantity);
         }
     }
 
     const removeItem = (itemId) => {
         const removed = cart.filter(elem => elem.id !== itemId)
+        const quantToRemove = cart.find(elem => elem.id === itemId).quantity;
+        const priceRemove = cart.find(elem => elem.id === itemId).price;
         setCart(removed);
+        setQuant(quant - quantToRemove);
+        setPrice(price - priceRemove * quantToRemove);
     }
 
     const clearItems = () => {
         console.log("Productos quitados del carrito")
         setCart([]);
+        setQuant(0);
+        setPrice(0);
     }
 
-    return <Context.Provider value={{cart, addItem, removeItem, clearItems}}>
+    return <Context.Provider value={{cart, quant, price, addItem, removeItem, clearItems}}>
         {children}
     </Context.Provider>
 }

@@ -7,17 +7,11 @@ import "./ItemDetails.css";
 const ItemDetails = ({title, id, image, price, stock, details, category}) => {
 
     const [quantity, setQuantity] = useState(0);
-
-    const {cart, addItem, clearItems} = useContext(Context);
-
-    /*
-    const clearItems = () => {
-        clear();
-        setQuantity(0);
-    } */
+    
+    const {addItem} = useContext(Context);
 
     const onAdd = (num) => {
-        /*alert(`Agregaste ${num} ${title} al carrito`) */
+
         setQuantity(num)
 
         const productToAdd = {
@@ -29,7 +23,6 @@ const ItemDetails = ({title, id, image, price, stock, details, category}) => {
             details,
             category
         }
-
         addItem(productToAdd, num)
     }
 
@@ -45,9 +38,8 @@ const ItemDetails = ({title, id, image, price, stock, details, category}) => {
             <div className="details">
             <p>{details}</p>
             </div>
-            <p>Precio: {price} Stock: {stock}</p>
+            <p>Precio: ${price} Stock: {stock}</p>
             {quantity > 0 ? <Link to={"/cart"}>Ir al carrito</Link> : <ItemCount stock={stock} initial={1} onAdd={onAdd}/>}
-            {cart.length ? <button onClick={clearItems}>Quitar todos los productos del carrito</button> : null}
         </div>
     )   
 };

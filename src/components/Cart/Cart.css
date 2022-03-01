@@ -1,0 +1,44 @@
+.productos {
+    display: grid;
+    grid-template-rows: repeat(auto-fill, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-auto-flow: row;
+    width: 100%;
+    justify-items: stretch;
+    align-items: center;
+}
+
+.producto {
+    border-style: solid;
+    border-color: rgb(82, 32, 88);
+}
+
+img {
+    width: 50%;
+    height: 60%;
+}
+
+.price {
+    color:crimson;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1015px) {
+    .productos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+ }
+
+
+@media screen and (max-width: 666px) {
+    .productos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+ }
+
+@media screen and (max-width: 400px) {
+    .productos {
+        grid-template-columns: 1fr;
+    }
+ }
