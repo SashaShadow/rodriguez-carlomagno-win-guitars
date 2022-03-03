@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./ItemListContainer.css";
 import ItemList from "../ItemList/ItemList.js";
-import { getByCategory } from "../../asyncmock.js";
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { firestoreDb } from "../../services/firebase.js";
 
 const ItemListContainer = ({greeting}) => {
 
@@ -12,11 +13,27 @@ const ItemListContainer = ({greeting}) => {
     
         useEffect(() => {
             console.log("App montada");
-            getByCategory(category)
-            .then(producto => {
-                setProducto(producto)
-                setLoader(false)})
-            .catch(err => console.log(err));
+            setLoader(true);
+            
+            const collectionRef = category ? query(collection(firestoreDb, "products"), where("category", "==", category)) : collection(firestoreDb, "products");
+
+            //const query(collection(firestoreDb, 'products'), where('category', '==', categoryId))
+
+            // response es querySnapshot segun la documentacion
+            getDocs(collectionRef).then(response => {
+                const products = response.docs.map(prod => {
+                    console.log(prod)
+                    return { id: prod.id, ...prod.data()}
+                })
+                console.log(products);
+                setProducto(products);
+            }).finally(() => {
+                setLoader(false);
+            })
+
+            return(() => {
+                setProducto();
+            })
         }, [category]);
 
     return (

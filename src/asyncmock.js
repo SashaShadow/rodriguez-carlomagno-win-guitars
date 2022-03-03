@@ -24,7 +24,7 @@ const items = [
         id: 3,
         image: "https://d1aeri3ty3izns.cloudfront.net/media/48/480698/600/preview.jpg",
         price: 160000,
-        details: "Bajo clásica utiilizado por múltiples artistas, especialmente en el rock.",
+        details: "Bajo clásico utiilizado por múltiples artistas, especialmente en el rock.",
         category: "bass",
         stock: 4,
     },
