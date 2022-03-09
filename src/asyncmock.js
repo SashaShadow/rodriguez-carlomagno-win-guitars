@@ -1,4 +1,3 @@
-import bass from "./components/ItemCount/washburnt24.jpg";
 
 const items = [
     {

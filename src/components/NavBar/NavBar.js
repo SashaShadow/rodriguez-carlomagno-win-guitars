@@ -5,11 +5,11 @@ import Context from "../../context/CartContext.js";
 import "./NavBar.css";
 import logo from "../../../src/logo.png";
 import { getDocs, collection} from "firebase/firestore";
-import { firestoreDb } from "../../services/firebase.js";
+import { firestoreDb } from "../../services/Firebase/firebase.js";
 
 const NavBar = () => {
 
-    const {cart, quant} = useContext(Context);
+    const {cart} = useContext(Context);
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const NavBar = () => {
             }>{cat.description}</NavLink>)}
             <NavLink to={`/us`} className={({isActive}) => isActive ? "active us" : "us" }><p>Nosotros</p></NavLink>
             <NavLink to={"/contact"} className={({isActive}) => isActive ? "active contact" : "contact" }><p >Contacto</p></NavLink>
-            {cart.length? <CartWidget quant={quant}/> : null}
+            {cart.length? <CartWidget/> : null}
         </div>
 
     )

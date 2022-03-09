@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import NavBar from "./components/NavBar/NavBar.js";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer.js";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer.js";
@@ -7,11 +7,13 @@ import Contact from "./components/Contact/Contact.js";
 import Cart from "./components/Cart/Cart.js";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {CartContext} from "./context/CartContext.js";
+import {NotiProvider} from "./services/Notification/Notification.js";
 
 
 function App() {
   
   return (
+    <NotiProvider>
     <BrowserRouter>
       <CartContext>
       <div className='App'>
@@ -27,7 +29,7 @@ function App() {
     </div>
     </CartContext>
     </BrowserRouter>
-    
+    </NotiProvider>
   );
 }
 

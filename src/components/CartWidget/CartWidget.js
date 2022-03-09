@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import { Link } from "react-router-dom";
 import Context from "../../context/CartContext.js";
 import { BsCart4 } from 'react-icons/bs';
@@ -6,16 +6,15 @@ import { BsCart4 } from 'react-icons/bs';
 
 const CartWidget = () => {
 
-    const {quant} = useContext(Context);
+    const {getQuantity, cart} = useContext(Context);
 
     useEffect(() => {
-        //console.log(cart);
-        console.log(quant);
-    }, [quant])
+
+    }, [cart])
     
     return (
         
-        <Link to={"/cart"}><BsCart4/> {quant}</Link>
+        <Link to={"/cart"}><BsCart4/> {getQuantity()}</Link>
         
     )
 }

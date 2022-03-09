@@ -4,10 +4,10 @@ import ItemDetails from "../ItemDetails/ItemDetails.js";
 import { useParams } from "react-router-dom";
 import "./ItemDetailContainer.css";
 import { getDoc, doc } from "firebase/firestore";
-import { firestoreDb } from "../../services/firebase.js";
+import { firestoreDb } from "../../services/Firebase/firebase.js";
 
 const ItemDetailContainer = ({ greeting }) => {
-
+    
     const [it, setItems] = useState();
     const { productId } = useParams();
 

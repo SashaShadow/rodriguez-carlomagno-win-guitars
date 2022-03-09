@@ -5,7 +5,7 @@ export const Notification = ({message = "prueba", severity= ""}) => {
  
     const notificationStyle = {
         position: "absolute",
-        top: 2,
+        top: 5,
         right: 5,
         display: "flex",
         justifyContent: "center",
@@ -14,7 +14,6 @@ export const Notification = ({message = "prueba", severity= ""}) => {
         height: "auto",
         color: "white",
         padding: "10px 20px 10px 20px",
-        borderRadius: "10px",
     }
 
     const config = true ?
@@ -28,6 +27,7 @@ export const Notification = ({message = "prueba", severity= ""}) => {
     }
 
     return (
+
         <div {...config}>
             {message}
         </div>
@@ -41,9 +41,9 @@ export const NotiProvider = ({children}) => {
     const [message, setMessage] = useState("");
     const [severity, setSeverity] = useState("");
 
-    const setNotification = (severity, message) => {
-        setSeverity(severity)
+    const setNotification = (message, severity) => {
         setMessage(message)
+        setSeverity(severity)
         setTimeout(() => {
             setMessage("");
         }, 5000)

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Context from "../../context/CartContext.js";
 import ItemCount from "../ItemCount/ItemCount.js";
 import "./ItemDetails.css";
+import { useNotificationServices } from '../../services/Notification/Notification.js';
 
 const ItemDetails = ({title, id, image, price, stock, details, category}) => {
 
@@ -10,9 +11,9 @@ const ItemDetails = ({title, id, image, price, stock, details, category}) => {
     
     const {addItem} = useContext(Context);
 
-    const onAdd = (num) => {
+    const setNotification = useNotificationServices()
 
-        setQuantity(num)
+    const onAdd = (num) => {
 
         const productToAdd = {
             title,
@@ -23,7 +24,10 @@ const ItemDetails = ({title, id, image, price, stock, details, category}) => {
             details,
             category
         }
+
         addItem(productToAdd, num)
+        setQuantity(num)
+        setNotification(`Se agregó ${title} al carrito`, 'success');
     }
 
     useEffect(() => {
@@ -33,7 +37,6 @@ const ItemDetails = ({title, id, image, price, stock, details, category}) => {
     return (
         <div className="it">
             <h3>{title}</h3>
-            <p>Id: {id}</p>
             <img className="imagen" src={image} alt={title}/>
             <div className="details">
             <p>{details}</p>

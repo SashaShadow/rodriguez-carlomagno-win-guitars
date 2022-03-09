@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./ItemListContainer.css";
 import ItemList from "../ItemList/ItemList.js";
 import { getDocs, collection, query, where } from "firebase/firestore";
-import { firestoreDb } from "../../services/firebase.js";
+import { firestoreDb } from "../../services/Firebase/firebase.js";
 
 const ItemListContainer = ({greeting}) => {
 
@@ -17,15 +17,11 @@ const ItemListContainer = ({greeting}) => {
             
             const collectionRef = category ? query(collection(firestoreDb, "products"), where("category", "==", category)) : collection(firestoreDb, "products");
 
-            //const query(collection(firestoreDb, 'products'), where('category', '==', categoryId))
-
             // response es querySnapshot segun la documentacion
             getDocs(collectionRef).then(response => {
-                const products = response.docs.map(prod => {
-                    console.log(prod)
+                const products = response.docs.map(prod => {                  
                     return { id: prod.id, ...prod.data()}
                 })
-                console.log(products);
                 setProducto(products);
             }).finally(() => {
                 setLoader(false);
