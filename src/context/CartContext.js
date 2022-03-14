@@ -1,41 +1,21 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
+import useLocalStorage from "../services/LocalStorState/LocalStorState.js";
 
 const Context = React.createContext();
 
 export const CartContext = ({children}) => {
 
-    const [cart, setCart] = useState([]);
-
-    useEffect(() => {
-        console.log(cart);
-    }, [cart])
+    const [cart, setCart] = useLocalStorage([], "cart");
 
     const isInCart = (id) => {
         return cart.some(p => p.id === id)
     }
 
     const addItem = (productToAdd, quantity) => {
-
         const objetoNuevo = {
             ...productToAdd,
             quantity,
         }
-
-        /*
-        if (isInCart(productToAdd.id)) {
-            //encontrar la cantidad que ya tengo agregada de tal item
-            const findQuantity = cart.find(p => p.id === productToAdd.id).quantity;
-            //encontrar la cantidad de productos que se pueden agregar segun el stock
-            const leftStock = productToAdd.stock - findQuantity;
-            //agregar cierta cantidad si la agregada mas la nueva no supera el stock del producto
-            if (leftStock >= quantity) {  
-                
-            /*} else {
-                alert(`Superaste la cantidad de productos para agregar, stock restante ${leftStock}`)
-            } 
-        } else {
-            setCart([...cart, objetoNuevo]);
-        } */
         isInCart(productToAdd.id) ? updateItemInCart(objetoNuevo) : addItemToCart(objetoNuevo) 
     }
 

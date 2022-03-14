@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, { useContext, useState, useEffect } from "react";
 import CartWidget from "../CartWidget/CartWidget.js";
 import { Link, NavLink } from "react-router-dom";
 import Context from "../../context/CartContext.js";
@@ -18,6 +18,10 @@ const NavBar = () => {
                 return { id: cat.id, ...cat.data()}
             })
             setCategories(categories);
+        })
+
+        return (() => {
+            setCategories();
         })
     }, []);
 

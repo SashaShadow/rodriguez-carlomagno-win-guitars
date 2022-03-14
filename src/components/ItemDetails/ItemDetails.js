@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Context from "../../context/CartContext.js";
 import ItemCount from "../ItemCount/ItemCount.js";
@@ -9,7 +9,7 @@ const ItemDetails = ({title, id, image, price, stock, details, category}) => {
 
     const [quantity, setQuantity] = useState(0);
     
-    const {addItem} = useContext(Context);
+    const { addItem } = useContext(Context);
 
     const setNotification = useNotificationServices()
 
@@ -31,7 +31,6 @@ const ItemDetails = ({title, id, image, price, stock, details, category}) => {
     }
 
     useEffect(() => {
-        //quantity > 0 && console.log(quantity);
     }, [quantity])
 
     return (

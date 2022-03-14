@@ -27,7 +27,6 @@ export const Notification = ({message = "prueba", severity= ""}) => {
     }
 
     return (
-
         <div {...config}>
             {message}
         </div>

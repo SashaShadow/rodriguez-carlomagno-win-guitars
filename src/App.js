@@ -9,7 +9,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {CartContext} from "./context/CartContext.js";
 import {NotiProvider} from "./services/Notification/Notification.js";
 
-
 function App() {
   
   return (

@@ -2,29 +2,26 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./ItemListContainer.css";
 import ItemList from "../ItemList/ItemList.js";
-import { getDocs, collection, query, where } from "firebase/firestore";
-import { firestoreDb } from "../../services/Firebase/firebase.js";
+import { getProducts } from "../../services/Firebase/firebase.js";
+import { useNotificationServices } from '../../services/Notification/Notification.js';
 
 const ItemListContainer = ({greeting}) => {
 
         const [producto, setProducto] = useState([]);
         const [loader, setLoader] = useState(true);
         const { category } = useParams();
+
+        const setNotification = useNotificationServices();
     
         useEffect(() => {
-            console.log("App montada");
             setLoader(true);
             
-            const collectionRef = category ? query(collection(firestoreDb, "products"), where("category", "==", category)) : collection(firestoreDb, "products");
-
-            // response es querySnapshot segun la documentacion
-            getDocs(collectionRef).then(response => {
-                const products = response.docs.map(prod => {                  
-                    return { id: prod.id, ...prod.data()}
-                })
-                setProducto(products);
+            getProducts(category).then(response => {
+                setProducto(response)
+            }).catch((error) => {
+                setNotification('error', error)
             }).finally(() => {
-                setLoader(false);
+                setLoader(false)
             })
 
             return(() => {

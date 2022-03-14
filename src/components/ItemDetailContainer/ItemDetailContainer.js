@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { getItem } from "../../asyncmock.js";
 import ItemDetails from "../ItemDetails/ItemDetails.js";
 import { useParams } from "react-router-dom";
 import "./ItemDetailContainer.css";
-import { getDoc, doc } from "firebase/firestore";
-import { firestoreDb } from "../../services/Firebase/firebase.js";
+import { getProduct } from "../../services/Firebase/firebase.js";
+import { useNotificationServices } from "../../services/Notification/Notification.js";
+
 
 const ItemDetailContainer = ({ greeting }) => {
     
-    const [it, setItems] = useState();
+    const [item, setItems] = useState();
     const { productId } = useParams();
+    const [loader, setLoader] = useState(true)
+
+    const setNotification = useNotificationServices();
 
     useEffect(() => {
-        console.log("Detalles mostrados");
+        setLoader(true);
 
-        const docRef = doc(firestoreDb, "products", productId);
-
-        getDoc(docRef).then(response => {
-            const product = { id: response.id, ...response.data()}
-            setItems(product);
+        getProduct(productId).then(response => {
+            setItems(response)
+        }).catch((error) => {
+            setNotification('error', error)
+        }).finally(() => {
+            setLoader(false)
         })
         
         return (() => {
@@ -27,14 +31,18 @@ const ItemDetailContainer = ({ greeting }) => {
 
     }, [productId]);
 
-return (
-    <>
-    <h1>{greeting}</h1>
-    <div className="items">
-        <ItemDetails {...it}/>
-    </div>
-    </>
-)
+    
+        return (
+            <>
+            {
+                loader ? 
+                <h1>Cargando producto...</h1> :
+            <><h1>{greeting}</h1>
+            <div className="items">
+                <ItemDetails {...item}/>
+            </div></>
+            }
+            </>)
 }
 
 export default ItemDetailContainer;

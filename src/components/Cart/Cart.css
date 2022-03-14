@@ -10,13 +10,19 @@
 }
 
 .producto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-style: solid;
     border-color: rgb(82, 32, 88);
+    height: 100%;
 }
 
-img {
+.imgg {
     width: 50%;
-    height: 60%;
+    height: 50%;
+    max-width: 50%;
+    max-height: 70%;
 }
 
 .price {

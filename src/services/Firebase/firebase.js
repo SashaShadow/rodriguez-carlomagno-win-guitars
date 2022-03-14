@@ -1,43 +1,48 @@
-// Import the functions you need from the SDKs you need
-
 import { initializeApp } from "firebase/app";
-
-import { getFirestore } from "firebase/firestore";
-
-
-
-// TODO: Add SDKs for Firebase products that you want to use
-
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-
-// Your web app's Firebase configuration
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { getFirestore, getDocs, getDoc, doc, collection, where, query } from "firebase/firestore";
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyDr0dMZugL01oiYjlv3o6C1NT6ylIcjJgk",
-
-  authDomain: "win-guitars.firebaseapp.com",
-
-  projectId: "win-guitars",
-
-  storageBucket: "win-guitars.appspot.com",
-
-  messagingSenderId: "556077879009",
-
-  appId: "1:556077879009:web:2ee6b29822e4fe3df6b1a0",
-
-  measurementId: "G-SBF4XPXEVM"
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
+  measurementId: process.env.REACT_APP_measurementId,
 
 };
 
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-
-//Initialize Firestore (referencia a base de datos)
 export const firestoreDb = getFirestore(app);
 
+export const getProducts = (categoryId) => {
+  return new Promise((resolve, reject) => {
+    const collectionRef = categoryId ? 
+      query(collection(firestoreDb, "products"), where("category", "==", categoryId)) : 
+      collection(firestoreDb, "products");
+
+    getDocs(collectionRef).then(response => {
+      const products = response.docs.map(prod => {                  
+          return { id: prod.id, ...prod.data()}
+      })
+      resolve(products);
+  }).catch(err => {
+    reject("No se pudieron obtener los productos", err)
+  })
+})
+}
+
+export const getProduct = (productId) => {
+  return new Promise((resolve, reject) => {
+    const docRef = doc(firestoreDb, "products", productId);
+
+        getDoc(docRef).then(response => {
+            const product = { id: response.id, ...response.data()}
+            resolve(product);
+        }).catch(err => {
+          reject("No se pudo obtener el producto", err)
+        })
+  })
+}
