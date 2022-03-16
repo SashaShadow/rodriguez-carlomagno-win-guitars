@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Context from "../../context/CartContext.js";
 import ContactForm from '../ContactForm/ContactForm.js';
@@ -19,21 +19,15 @@ const Cart = () => {
     
     const [contact, setContact] = useState({
         name: '',
+        email: '',
         phone: '',
         address: '',
         comment: '',
     }) 
 
-    useEffect(() => {
-        console.log(cart);
-        return () => {
-            console.log("xd")
-        }
-    }, [])
-
     const confirmOrder = () => {
 
-        if(contact.phone !== '' && contact.address !== '' && contact.comment !== '' && contact.name !== '') {
+        if(contact.phone !== '' && contact.address !== '' && contact.email !== '' && contact.name !== '') {
         setProcessingOrder(true)
 
             const newOrder = {
@@ -109,13 +103,14 @@ const Cart = () => {
         <button onClick={() => clearItems()}>Quitar todos los items del carrito</button>
         <button onClick={() => confirmOrder()}>Confirmar compra</button>
         {
-                (contact.phone !== '' && contact.address !== '' && contact.comment !== '' && contact.name !== '') &&
+                (contact.phone !== '' && contact.address !== '' && contact.name !== '' && contact.email !== '') &&
                 
                     <div>
                         <h4>Nombre: {contact.name}</h4>
+                        <h4>Correo electrónico: {contact.email}</h4>
                         <h4>Telefono: {contact.phone}</h4>
                         <h4>Direccion: {contact.address}</h4>
-                        <h4>Comentario: {contact.comment}</h4>
+                        {contact.comment !== "" && <h4>Comentario: {contact.comment}</h4>}
                         <button onClick={() => setContact({ phone: '', address: '', comment: ''})} 
                                 className='Button' 
                                 style={{backgroundColor: '#db4025'}}>
@@ -124,7 +119,7 @@ const Cart = () => {
                     </div>    
             }
             <Togglable buttonLabelShow={
-                        (contact.phone !== '' && contact.address !== '' && contact.comment !== '' && contact.name !== '') 
+                        (contact.phone !== '' && contact.address !== '' && contact.email !== '' && contact.name !== '') 
                             ? 'Editar contacto' 
                             : 'Agregar datos de compra'
                         } 

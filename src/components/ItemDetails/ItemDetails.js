@@ -8,9 +8,7 @@ import { useNotificationServices } from '../../services/Notification/Notificatio
 const ItemDetails = ({title, id, image, price, stock, details, category}) => {
 
     const [quantity, setQuantity] = useState(0);
-    
     const { addItem } = useContext(Context);
-
     const setNotification = useNotificationServices()
 
     const onAdd = (num) => {

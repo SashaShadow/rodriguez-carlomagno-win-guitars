@@ -1,3 +1,12 @@
+.ContactContainer {
+    background-color: rgba(68, 212, 152, 0.1);
+    width: 85vw;
+    margin: 0 auto;
+    border-style:groove;
+    border-radius: 2px;
+    border-color: rgb(177, 29, 29);
+}
+
 .ContactForm {
     display: flex;
     flex-direction: column;
@@ -17,7 +26,7 @@
 .InputContact {
     border-style: none;
     border-bottom: 2px solid #8C30F5;
-    width: 85vw;
+    width: 80vw;
     height: 20px;
     margin-top: 10px;
     padding: 8px 5px;
