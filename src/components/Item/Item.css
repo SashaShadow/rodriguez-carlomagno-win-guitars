@@ -12,3 +12,10 @@
     max-width: 70%;
     max-height: 70%;
 }
+
+
+@media screen and (max-width: 666px) {
+    .it {
+        width: 80%;
+    }
+ }

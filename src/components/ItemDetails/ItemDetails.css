@@ -1,4 +1,4 @@
-.it {
+.it2 {
     background-color: rgba(225, 243, 227, 0.2);
     border-style: solid;
     border-color: rgb(39, 24, 53);
@@ -12,3 +12,9 @@
     max-width: 70%;
     max-height: 70%;
 }
+
+@media screen and (max-width: 666px) {
+    .it2 {
+        width: 80%;
+    }
+ }

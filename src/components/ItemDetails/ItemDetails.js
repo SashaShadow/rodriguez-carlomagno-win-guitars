@@ -32,7 +32,7 @@ const ItemDetails = ({title, id, image, price, stock, details, category}) => {
     }, [quantity])
 
     return (
-        <div className="it">
+        <div className="it2">
             <h3>{title}</h3>
             <img className="imagen" src={image} alt={title}/>
             <div className="details">

@@ -4,7 +4,7 @@
     grid-gap: 1.5%;
     grid-auto-flow: row;
     width: 100%;
-    justify-items: stretch;
+    justify-items: center;
     align-items: center;
 }
 
@@ -24,7 +24,9 @@
 
 @media screen and (max-width: 400px) {
     .ItemList {
-        grid-template-columns: 1fr;
+        grid-template-columns:none;
+        justify-content: center;
+        /* justify-items: normal; */
     }
  }
 
